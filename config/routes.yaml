@@ -1,5 +1,12 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+memo_index:
+    path: /memo
+    controller: App\Controller\MemoController::index
+memo_create:
+    path: /memo/create
+    controller: App\Controller\MemoController::create
+memo_edit:
+    path: /memo/{id}/edit
+    controller: App\Controller\MemoController::edit
+memo_delete:
+    path: /memo/{id}/delete
+    controller: App\Controller\MemoController::delete
