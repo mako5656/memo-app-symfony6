@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Memos</h1>
+    <ul>
+        {% for memo in memos %}
+            <li>{{ memo.content }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
