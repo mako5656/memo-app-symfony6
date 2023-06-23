@@ -12,16 +12,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MemoController extends AbstractController
 {
-    private $memoRepository;
-
-    public function __construct(MemoRepository $memoRepository)
-    {
-        $this->memoRepository = $memoRepository;
+    public function __construct(
+        private readonly MemoRepository $memoRepository
+    ){
     }
 
-    /**
-     * @Route("/", name="memo_index")
-     */
+    #[Route(path: '/', name: 'memo_index')]
     public function index(): Response
     {
         $memos = $this->memoRepository->findAllMemos();
@@ -31,9 +27,7 @@ class MemoController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/create", name="memo_create", methods={"GET", "POST"})
-     */
+    #[Route(path: '/create', name: 'memo_create', methods: ['GET', 'POST'])]
     public function create(Request $request): Response
     {
         $memo = new Memo();
@@ -51,9 +45,7 @@ class MemoController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/memo/{id}/edit", name="memo_edit", methods={"GET", "POST"})
-     */
+    #[Route(path: '/memo/{id}/edit', name: 'memo_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Memo $memo): Response
     {
         $form = $this->createForm(MemoFormType::class, $memo);
@@ -69,9 +61,7 @@ class MemoController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/memo/{id}/delete", name="memo_delete", methods={"POST"})
-     */
+    #[Route(path: '/memo/{id}/delete', name: 'memo_delete', methods: ['POST'])]
     public function delete(Request $request, Memo $memo): Response
     {
         if ($this->isCsrfTokenValid('delete' . $memo->getId(), $request->request->get('_token'))) {
