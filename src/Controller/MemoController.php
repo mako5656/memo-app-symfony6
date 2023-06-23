@@ -61,13 +61,16 @@ class MemoController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/memo/{id}/delete', name: 'memo_delete', methods: ['POST'])]
+    #[Route(path: '/memo/{id}/delete', name: 'memo_delete', methods: ['GET', 'POST'])]
     public function delete(Request $request, Memo $memo): Response
     {
         if ($this->isCsrfTokenValid('delete' . $memo->getId(), $request->request->get('_token'))) {
             $this->memoRepository->deleteMemo($memo);
+            return $this->redirectToRoute('memo_index');
         }
 
-        return $this->redirectToRoute('memo_index');
+        return $this->render('memo/delete.html.twig', [
+            'memo' => $memo,
+        ]);
     }
 }
