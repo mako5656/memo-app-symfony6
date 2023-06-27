@@ -5,6 +5,8 @@
     <ul>
         {% for memo in memos %}
             <li>{{ memo.content }}</li>
+            <a href="{{ path('memo_edit', {'id': memo.getId() }) }}">Edit</a>
+            <a href="{{ path('memo_delete', {'id': memo.getId() }) }}">Delete</a>
         {% endfor %}
     </ul>
 {% endblock %}
