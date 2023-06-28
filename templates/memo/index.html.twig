@@ -2,6 +2,9 @@
 
 {% block content %}
     <h1>Memos</h1>
+    <form action="{{ path('memo_create') }}" method="POST">
+        <button type="submit">メモを作成</button>
+    </form>
     <ul>
         {% for memo in memos %}
             <li>{{ memo.content }}</li>
