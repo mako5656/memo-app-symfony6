@@ -17,7 +17,7 @@ class MemoController extends AbstractController
     ){
     }
 
-    #[Route(path: '/', name: 'memo_index')]
+    #[Route(path: '/', name: 'memo_index', methods: ['GET'])]
     public function index(): Response
     {
         $memos = $this->memoRepository->findAllMemos();
