@@ -13,23 +13,23 @@ class MemoRepository extends ServiceEntityRepository
         parent::__construct($registry, Memo::class);
     }
 
-    public function findAllMemos()
+    public function findAllMemos(): array
     {
         return $this->findAll();
     }
 
-    public function findMemoById($id)
+    public function findMemoById($id): ?Memo
     {
         return $this->find($id);
     }
 
-    public function saveMemo($memo)
+    public function saveMemo($memo): void
     {
         $this->_em->persist($memo);
         $this->_em->flush();
     }
 
-    public function deleteMemo($memo)
+    public function deleteMemo($memo): void
     {
         $this->_em->remove($memo);
         $this->_em->flush();
